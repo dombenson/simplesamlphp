@@ -243,4 +243,31 @@ class SAMLBuilderTest extends TestCase
             $entityDescriptorXml
         );
     }
+
+    /**
+     * Test the option to include a SingleSignOnService to SP metadata
+     * @return void
+     */
+    public function testSpSignonUrl(): void
+    {
+        $entityId = 'https://entity.example.com/id';
+        $signOnUrl = 'https://entity.example.com/signon';
+        $set = 'saml20-sp-remote';
+
+        $metadata = [
+            'entityid'     => $entityId,
+            'name'         => ['en' => 'Test SP'],
+            'metadata-set' => $set,
+            'metadata.sp.signonurl' => $signOnUrl,
+        ];
+
+        $samlBuilder = new SAMLBuilder($entityId);
+        $samlBuilder->addMetadata($set, $metadata);
+        $entityDescriptorXml = $samlBuilder->getEntityDescriptorText();
+
+        $this->assertRegExp(
+            '|<md:SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="'.$signOnUrl.'"/>|',
+            $entityDescriptorXml
+        );
+    }
 }

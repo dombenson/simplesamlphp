@@ -527,6 +527,17 @@ class SAMLBuilder
 
         $e->setSingleLogoutService(self::createEndpoints($metadata->getEndpoints('SingleLogoutService'), false));
 
+        if ($metadata->hasValue('metadata.sp.signonurl')) {
+            $t = new EndpointType();
+            $t->setBinding(Constants::BINDING_HTTP_REDIRECT);
+            $t->setLocation($metadata->getValue('metadata.sp.signonurl'));
+            // This check is an interim measure as it is requires an update to
+            // the underlying saml2 library
+            if(method_exists($e, "addSingleSignOnService")) {
+                $e->addSingleSignOnService($t);
+            }
+        }
+
         $e->setNameIDFormat($metadata->getArrayizeString('NameIDFormat', []));
 
         $endpoints = $metadata->getEndpoints('AssertionConsumerService');
