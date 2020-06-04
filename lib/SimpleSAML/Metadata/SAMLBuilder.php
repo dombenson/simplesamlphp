@@ -535,6 +535,8 @@ class SAMLBuilder
             // the underlying saml2 library
             if(method_exists($e, "addSingleSignOnService")) {
                 $e->addSingleSignOnService($t);
+            } else {
+                SimpleSAML\Logger::warning('saml2 library missing signOnUrl support');
             }
         }
 

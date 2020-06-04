@@ -250,6 +250,11 @@ class SAMLBuilderTest extends TestCase
      */
     public function testSpSignonUrl(): void
     {
+        $testObj = new SPSSODescriptor();
+        if(!method_exists($e, "addSingleSignOnService")) {
+            $this->markTestSkipped("The underlying saml2 library has not been updated with support for SP signOnUrl");
+        }
+
         $entityId = 'https://entity.example.com/id';
         $signOnUrl = 'https://entity.example.com/signon';
         $set = 'saml20-sp-remote';
