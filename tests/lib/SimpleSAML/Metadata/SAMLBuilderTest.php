@@ -250,8 +250,8 @@ class SAMLBuilderTest extends TestCase
      */
     public function testSpSignonUrl(): void
     {
-        $testObj = new SPSSODescriptor();
-        if(!method_exists($e, "addSingleSignOnService")) {
+        $testObj = new \SAML2\XML\md\SPSSODescriptor();
+        if(!method_exists($testObj, "addSingleSignOnService")) {
             $this->markTestSkipped("The underlying saml2 library has not been updated with support for SP signOnUrl");
         }
 
