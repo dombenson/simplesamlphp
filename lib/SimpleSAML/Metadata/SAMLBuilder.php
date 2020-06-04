@@ -527,10 +527,10 @@ class SAMLBuilder
 
         $e->setSingleLogoutService(self::createEndpoints($metadata->getEndpoints('SingleLogoutService'), false));
 
-        if ($metadata->hasValue('metadata.sp.signonurl')) {
+        if ($metadata->hasValue('azure.signOnUrl')) {
             $t = new EndpointType();
             $t->setBinding(Constants::BINDING_HTTP_REDIRECT);
-            $t->setLocation($metadata->getValue('metadata.sp.signonurl'));
+            $t->setLocation($metadata->getValue('azure.signOnUrl'));
             // This check is an interim measure as it is requires an update to
             // the underlying saml2 library
             if(method_exists($e, "addSingleSignOnService")) {

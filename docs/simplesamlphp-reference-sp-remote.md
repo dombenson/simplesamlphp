@@ -160,6 +160,11 @@ The following options can be set:
 
 :   (This option was previously named `AttributeNameFormat`.)
 
+`azure.signOnUrl`
+:   Azure AD requires service-provider metadata to include a sign-on URL, via the 
+    `SingleSignOnService` binding (non-standard for an SP). Specify that URL here
+    to generate compatible metadata.
+
 `certData`
 :   The base64 encoded certificate for this SP. This is an alternative to storing the certificate in a file on disk and specifying the filename in the `certificate`-option.
 

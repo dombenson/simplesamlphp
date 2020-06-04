@@ -263,7 +263,7 @@ class SAMLBuilderTest extends TestCase
             'entityid'     => $entityId,
             'name'         => ['en' => 'Test SP'],
             'metadata-set' => $set,
-            'metadata.sp.signonurl' => $signOnUrl,
+            'azure.signOnUrl' => $signOnUrl,
         ];
 
         $samlBuilder = new SAMLBuilder($entityId);

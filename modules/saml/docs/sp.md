@@ -179,6 +179,11 @@ Options
 :   Processing filters that should be run after SP authentication.
     See the [authentication processing filter manual](simplesamlphp-authproc).
 
+`azure.signOnUrl`
+:   Azure AD requires service-provider metadata to include a sign-on URL, via the 
+    `SingleSignOnService` binding (non-standard for an SP). Specify that URL here
+    to generate compatible metadata.
+
 `certData`
 :   Base64 encoded certificate data. Can be used instead of the `certificate` option.
 
