@@ -54,7 +54,12 @@ if ($issuer === null) {
         throw new Exception('Missing <saml:Issuer> in message delivered to AssertionConsumerService.');
     }
 }
-$issuer = $issuer->getValue();
+if(!is_string($issuer)) {
+    if(!method_exists($issuer, "getValue")) {
+        throw new Exception('saml:Issuer returned neither string nor object with getValue.');
+    }
+    $issuer = $issuer->getValue();
+}
 
 $session = \SimpleSAML\Session::getSessionFromRequest();
 $prevAuth = $session->getAuthData($sourceId, 'saml:sp:prevAuth');
