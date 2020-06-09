@@ -48,6 +48,10 @@ foreach ($slob as $binding) {
     ];
 }
 
+if($spconfig->hasValue('azure.signOnUrl')) {
+    $metaArray20['azure.signOnUrl'] = $spconfig->getString('azure.signOnUrl');
+}
+
 $assertionsconsumerservicesdefault = [
     'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
     'urn:oasis:names:tc:SAML:1.0:profiles:browser-post',
